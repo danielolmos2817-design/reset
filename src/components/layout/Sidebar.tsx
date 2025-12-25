@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { LayoutDashboard, Users, FileText, CreditCard, Award, Image, Settings, LogOut } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import logo from '../../assets/logo.png';

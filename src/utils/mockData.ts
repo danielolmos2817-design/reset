@@ -1,9 +1,6 @@
-import { IAssociation, ICampRegistration, IExam, IExamResult, INotification, IPayment, IUser } from "../types";
-import blog1 from '../assets/images/blog-1.jpg';
+import type { IAssociation, ICampRegistration, IExam, IExamResult, INotification, IPayment, IUser } from "../types";
 import campImg from '../assets/images/new_1.jpg';
 import ceremonyImg from '../assets/images/new_2.jpg';
-import serviceImg from '../assets/images/new_3.jpg';
-import studyImg from '../assets/images/new_4.jpg';
 import gallery1 from '../assets/images/new_5.jpg';
 import gallery2 from '../assets/images/new_6.jpg';
 
@@ -18,9 +15,9 @@ export const mockUsers: IUser[] = [
         association: "Ikeja Association",
         role: "ambassador",
         age: 14,
-        rank: "Page",
-        user_code: "RA/2023/001",
-        ambassador_code: "RA/2023/001",
+        rank: "Special Envoy",
+        user_code: "ogbc/ra/1001",
+        ambassador_code: "ogbc/ra/1001",
         status: "active",
         created_at: "2023-01-15",
     },
@@ -35,8 +32,8 @@ export const mockUsers: IUser[] = [
         role: "president",
         age: 45,
         rank: "Ambassador Plenipotentiary",
-        user_code: "RA/PRES/001",
-        ambassador_code: "RA/PRES/001",
+        user_code: "ogbc/ra/2001",
+        ambassador_code: "ogbc/ra/2001",
         status: "active",
         created_at: "2022-05-10",
     },
@@ -51,8 +48,8 @@ export const mockUsers: IUser[] = [
         role: "superadmin",
         age: 40,
         rank: "Ambassador Plenipotentiary",
-        user_code: "RA/ADMIN/001",
-        ambassador_code: "RA/ADMIN/001",
+        user_code: "ogbc/ra/0001",
+        ambassador_code: "ogbc/ra/0001",
         status: "active",
         created_at: "2020-01-01",
     }
@@ -61,21 +58,21 @@ export const mockUsers: IUser[] = [
 export const mockExams: IExam[] = [
     {
         id: 1,
-        title: "Junior Ambassador Promotion Exam",
-        description: "Assessment for promotion from Page to Squire.",
-        rank_required: "Page",
+        title: "Intern Promotion Exam",
+        description: "Assessment for promotion from Assistant Intern to Intern.",
+        rank_required: "Assistant Intern",
         duration_minutes: 45,
         pass_score: 60,
         questions_count: 50,
     },
     {
         id: 2,
-        title: "Senior Ambassador Qualification",
-        description: "Advanced test for Knight rank candidates.",
-        rank_required: "Squire",
+        title: "Ambassador Extra-ordinary Qualification",
+        description: "Advanced test for Ambassador Extra-ordinary candidates.",
+        rank_required: "Ambassador",
         duration_minutes: 90,
         pass_score: 70,
-        questions_count: 100,
+        questions_count: 50,
     }
 ];
 
@@ -125,7 +122,7 @@ export const mockCampRegistrations: ICampRegistration[] = [
         id: 501,
         user_id: 1,
         ambassador_name: "Adeboye Samuel",
-        ambassador_code: "RA/2023/001",
+        ambassador_code: "ogbc/ra/1001",
         camp_year: 2024,
         camp_type: "Annual Camp",
         registration_date: "2023-11-20",
@@ -143,7 +140,7 @@ export const mockCampRegistrations: ICampRegistration[] = [
         id: 502,
         user_id: 2,
         ambassador_name: "Chidi Okonkwo",
-        ambassador_code: "RA/2023/002",
+        ambassador_code: "ogbc/ra/1002",
         camp_year: 2024,
         camp_type: "Annual Camp",
         registration_date: "2023-11-22",
@@ -205,28 +202,6 @@ export const mockBlogPosts: IBlogPost[] = [
         featured_image: ceremonyImg,
         created_at: "2023-12-10",
         category: "Achievements"
-    },
-    {
-        id: 3,
-        title: "Building Character Through Service",
-        slug: "character-through-service",
-        excerpt: "Discover how our community service initiatives are shaping young leaders and making a real difference in local communities.",
-        content: "Service is at the heart of what it means to be a Royal Ambassador. This month, our ambassadors participated in various community outreach programs...",
-        author: "Admin",
-        featured_image: serviceImg,
-        created_at: "2023-12-05",
-        category: "Ministry"
-    },
-    {
-        id: 4,
-        title: "Study Tips for Upcoming Rank Exams",
-        slug: "exam-study-tips",
-        excerpt: "Preparing for your next rank examination? Here are proven strategies to help you succeed and advance in your Royal Ambassadors journey.",
-        content: "As exam season approaches, we want to equip you with the best study practices. Start early, create a study schedule, and don't forget to pray...",
-        author: "Admin",
-        featured_image: studyImg,
-        created_at: "2023-11-28",
-        category: "Education"
     }
 ];
 
@@ -255,38 +230,6 @@ export const mockGalleryItems: IGalleryItem[] = [
         image_path: gallery2,
         created_at: "2023-12-10",
         category: "Ceremonies"
-    },
-    {
-        id: 3,
-        title: "Community Outreach Program",
-        description: "Ambassadors serving at the local orphanage",
-        image_path: serviceImg,
-        created_at: "2023-11-20",
-        category: "Service"
-    },
-    {
-        id: 4,
-        title: "Bible Study Session",
-        description: "Weekly Bible study and discipleship training",
-        image_path: studyImg,
-        created_at: "2023-11-15",
-        category: "Education"
-    },
-    {
-        id: 5,
-        title: "Sports Day Competition",
-        description: "Ambassadors competing in the annual sports tournament",
-        image_path: campImg,
-        created_at: "2023-10-28",
-        category: "Recreation"
-    },
-    {
-        id: 6,
-        title: "Leadership Workshop",
-        description: "Training the next generation of Christian leaders",
-        image_path: ceremonyImg,
-        created_at: "2023-10-15",
-        category: "Training"
     }
 ];
 
@@ -309,32 +252,6 @@ export const mockVouchers: IVoucher[] = [
         amount: 2000,
         status: "active",
         created_at: "2024-01-15"
-    },
-    {
-        id: 2,
-        code: "CAMP2024-XYZ789",
-        type: "camp",
-        amount: 15000,
-        status: "used",
-        created_at: "2024-01-10",
-        used_by: "Adeboye Samuel",
-        used_at: "2024-02-01"
-    },
-    {
-        id: 3,
-        code: "DUES2024-DEF456",
-        type: "dues",
-        amount: 5000,
-        status: "active",
-        created_at: "2024-01-20"
-    },
-    {
-        id: 4,
-        code: "EXAM2024-GHI789",
-        type: "exam",
-        amount: 2000,
-        status: "expired",
-        created_at: "2023-12-01"
     }
 ];
 
@@ -383,7 +300,30 @@ export const mockExamQuestions: IExamQuestion[] = [
         option_d: "Individual Success",
         correct_answer: 'b',
         points: 2
-    }
+    },
+    // Adding more questions to reach 30+ range for simulation
+    ...Array.from({ length: 32 }).map((_, i) => ({
+        id: i + 4,
+        exam_id: 1,
+        question_text: `RA Doctrine Question ${i + 4}: What is the significance of the RA emblem?`,
+        option_a: "Service",
+        option_b: "Loyalty",
+        option_c: "Growth",
+        option_d: "All of the above",
+        correct_answer: 'd' as const,
+        points: 2
+    })),
+    ...Array.from({ length: 35 }).map((_, i) => ({
+        id: i + 40,
+        exam_id: 2,
+        question_text: `Advanced Leadership Question ${i + 1}: How should an Ambassador handle conflict?`,
+        option_a: "Avoid it",
+        option_b: "Biblical resolution",
+        option_c: "Report to authorities",
+        option_d: "Ignore it",
+        correct_answer: 'b' as const,
+        points: 3
+    }))
 ];
 
 export interface IFinancialSummary {

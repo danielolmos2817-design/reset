@@ -4,6 +4,9 @@ import { Clock, AlertCircle, CheckCircle } from 'lucide-react';
 import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { mockExams, mockExamQuestions } from '../../utils/mockData';
+import type { Rank } from '../../types';
+
+import { Modal } from '../../components/ui/Modal';
 
 export const ExamSession: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -14,15 +17,40 @@ export const ExamSession: React.FC = () => {
     const [timeRemaining, setTimeRemaining] = useState(exam?.duration_minutes ? exam.duration_minutes * 60 : 0);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<Record<number, string>>({});
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [score, setScore] = useState(0);
+    const [passed, setPassed] = useState(false);
+
+    const ranks: Rank[] = [
+        'Candidate',
+        'Assistant Intern',
+        'Intern',
+        'Senior Intern',
+        'Envoy',
+        'Special Envoy',
+        'Senior Envoy',
+        'Dean',
+        'Ambassador',
+        'Ambassador Extraordinary',
+        'Ambassador Plenipotentiary'
+    ];
+
+    const getNextRank = (currentRank: Rank): Rank => {
+        const index = ranks.indexOf(currentRank);
+        if (index !== -1 && index < ranks.length - 1) {
+            return ranks[index + 1];
+        }
+        return currentRank;
+    };
 
     useEffect(() => {
-        if (timeRemaining > 0) {
+        if (timeRemaining > 0 && !showSuccessModal) {
             const timer = setInterval(() => {
                 setTimeRemaining(prev => prev - 1);
             }, 1000);
             return () => clearInterval(timer);
         }
-    }, [timeRemaining]);
+    }, [timeRemaining, showSuccessModal]);
 
     if (!exam) {
         return (
@@ -40,8 +68,19 @@ export const ExamSession: React.FC = () => {
     };
 
     const handleSubmit = () => {
-        console.log('Submitting exam with answers:', answers);
-        navigate('/ambassador/results');
+        let correctCount = 0;
+        questions.forEach(q => {
+            if (answers[q.id] === q.correct_answer) {
+                correctCount++;
+            }
+        });
+
+        const calculatedScore = Math.round((correctCount / questions.length) * 100);
+        const isPassed = calculatedScore >= exam.pass_score;
+
+        setScore(calculatedScore);
+        setPassed(isPassed);
+        setShowSuccessModal(true);
     };
 
     const formatTime = (seconds: number) => {
@@ -55,6 +94,41 @@ export const ExamSession: React.FC = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {/* Success/Result Modal */}
+            <Modal
+                isOpen={showSuccessModal}
+                onClose={() => navigate('/ambassador/results')}
+                title={passed ? "🎉 Congratulations!" : "Keep Trying!"}
+            >
+                <div className="text-center p-6">
+                    <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 ${passed ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'
+                        }`}>
+                        {passed ? <CheckCircle className="w-12 h-12" /> : <AlertCircle className="w-12 h-12" />}
+                    </div>
+
+                    <h2 className="text-3xl font-bold text-white mb-2">{score}%</h2>
+                    <p className={`text-lg font-medium mb-6 ${passed ? 'text-green-500' : 'text-red-500'}`}>
+                        {passed ? 'You passed the exam!' : 'You did not reach the passing score.'}
+                    </p>
+
+                    {passed && (
+                        <div className="bg-gold-500/10 border border-gold-500/50 rounded-xl p-4 mb-6">
+                            <p className="text-sm text-slate-400 mb-1">New Rank Achieved</p>
+                            <p className="text-2xl font-bold text-gold-500">{getNextRank(exam.rank_required)}</p>
+                        </div>
+                    )}
+
+                    <div className="flex flex-col space-y-3">
+                        <Button onClick={() => navigate('/ambassador/results')}>
+                            View Results Detail
+                        </Button>
+                        <Button variant="outline" onClick={() => navigate('/ambassador/dashboard')}>
+                            Go to Dashboard
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
+
             {/* Header */}
             <div className="flex items-center justify-between">
                 <div>
@@ -114,8 +188,8 @@ export const ExamSession: React.FC = () => {
                                     key={option}
                                     onClick={() => handleAnswer(questions[currentQuestion].id, option)}
                                     className={`w-full p-4 rounded-lg border-2 text-left transition-all ${isSelected
-                                            ? 'border-gold-500 bg-gold-500/10'
-                                            : 'border-navy-700 bg-navy-900/50 hover:border-navy-600'
+                                        ? 'border-gold-500 bg-gold-500/10'
+                                        : 'border-navy-700 bg-navy-900/50 hover:border-navy-600'
                                         }`}
                                 >
                                     <div className="flex items-center space-x-3">

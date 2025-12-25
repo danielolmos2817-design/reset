@@ -11,7 +11,7 @@ export const ProfileSettings: React.FC = () => {
         phone: '+234 801 234 5678',
         address: '123 Main Street, Lagos',
         association: 'Ikeja Association',
-        rank: 'Squire'
+        rank: 'Special Envoy'
     });
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -128,22 +128,22 @@ export const ProfileSettings: React.FC = () => {
                 <Card>
                     <h3 className="text-xl font-bold text-white mb-6 flex items-center">
                         <MapPin className="w-5 h-5 mr-2 text-gold-500" />
-                        Association & Rank
+                        Association, Rank & ID
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label htmlFor="association" className="block text-slate-300 font-medium mb-2">
-                                Association
+                            <label htmlFor="ambassadorCode" className="block text-slate-300 font-medium mb-2">
+                                Ambassador Code (ID)
                             </label>
                             <input
                                 type="text"
-                                id="association"
-                                name="association"
-                                value={formData.association}
-                                className="w-full px-4 py-3 bg-navy-900/50 border border-navy-700 rounded-lg text-slate-400 cursor-not-allowed"
+                                id="ambassadorCode"
+                                name="ambassadorCode"
+                                value="ogbc/ra/1001"
+                                className="w-full px-4 py-3 bg-navy-900/50 border border-navy-700 rounded-lg text-gold-500 font-mono font-bold cursor-not-allowed"
                                 disabled
                             />
-                            <p className="text-xs text-slate-500 mt-1">Contact admin to change association</p>
+                            <p className="text-xs text-slate-500 mt-1">Your unique lifelong RA identification</p>
                         </div>
 
                         <div>
@@ -159,6 +159,21 @@ export const ProfileSettings: React.FC = () => {
                                 disabled
                             />
                             <p className="text-xs text-slate-500 mt-1">Rank is updated after passing exams</p>
+                        </div>
+
+                        <div>
+                            <label htmlFor="association" className="block text-slate-300 font-medium mb-2">
+                                Association
+                            </label>
+                            <input
+                                type="text"
+                                id="association"
+                                name="association"
+                                value={formData.association}
+                                className="w-full px-4 py-3 bg-navy-900/50 border border-navy-700 rounded-lg text-slate-400 cursor-not-allowed"
+                                disabled
+                            />
+                            <p className="text-xs text-slate-500 mt-1">Contact admin to change association</p>
                         </div>
                     </div>
                 </Card>

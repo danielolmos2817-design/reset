@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 export const AmbassadorDashboard: React.FC = () => {
     const stats = [
-        { label: 'Current Rank', value: 'Squire', icon: Award, trend: 'neutral' as const },
-        { label: 'Next Exam', value: 'Knight', icon: BookOpen, change: '10 days left', trend: 'up' as const },
+        { label: 'Current Rank', value: 'Special Envoy', icon: Award, trend: 'neutral' as const },
+        { label: 'Next Exam', value: 'Senior Envoy', icon: BookOpen, change: '10 days left', trend: 'up' as const },
         { label: 'Exam Score', value: '85%', icon: TrendingUp, change: 'Last Exam', trend: 'up' as const },
         { label: 'Active Days', value: '124', icon: Clock, trend: 'up' as const },
     ];
@@ -28,7 +28,7 @@ export const AmbassadorDashboard: React.FC = () => {
                     <Card>
                         <div className="flex flex-col md:flex-row items-center justify-between mb-6">
                             <div>
-                                <h3 className="text-xl font-bold text-white">Next Milestone: Knight Rank</h3>
+                                <h3 className="text-xl font-bold text-white">Next Milestone: Senior Envoy</h3>
                                 <p className="text-slate-400">You are eligible for the next promotion exam.</p>
                             </div>
                             <Link to="/ambassador/exams">
@@ -60,7 +60,7 @@ export const AmbassadorDashboard: React.FC = () => {
                                     <Award className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <div className="text-white font-medium">Squire Badge</div>
+                                    <div className="text-white font-medium">Special Envoy Badge</div>
                                     <div className="text-xs text-slate-500">Earned 2 months ago</div>
                                 </div>
                             </div>

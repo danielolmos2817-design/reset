@@ -52,7 +52,7 @@ import { PresidentDashboard } from './pages/admin/PresidentDashboard';
 import { ManageAmbassadors } from './pages/president/ManageAmbassadors';
 import { ExamApprovals } from './pages/president/ExamApprovals';
 import { CampRegistrations } from './pages/president/CampRegistrations';
-import { PaymentsUpload } from './pages/president/PaymentsUpload';
+import { PaymentUpload } from './pages/president/PaymentUpload';
 import { Notifications as PresidentNotifications } from './pages/president/Notifications';
 import { ProfileSettings as PresidentProfileSettings } from './pages/president/ProfileSettings';
 
@@ -338,7 +338,7 @@ function App() {
               path="/president/payments"
               element={
                 <DashboardLayout role="president">
-                  <PaymentsUpload />
+                  <PaymentUpload />
                 </DashboardLayout>
               }
             />

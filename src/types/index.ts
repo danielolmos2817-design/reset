@@ -1,5 +1,5 @@
 export type Role = 'ambassador' | 'president' | 'superadmin';
-export type Rank = 'Page' | 'Squire' | 'Knight' | 'Ambassador' | 'Ambassador Plenipotentiary';
+export type Rank = 'Candidate' | 'Assistant Intern' | 'Intern' | 'Senior Intern' | 'Envoy' | 'Special Envoy' | 'Senior Envoy' | 'Dean' | 'Ambassador' | 'Ambassador Extraordinary' | 'Ambassador Plenipotentiary';
 export type Status = 'active' | 'inactive' | 'suspended';
 
 export interface IUser {

@@ -1,10 +1,16 @@
 
 export const RANK_HIERARCHY: Record<string, number> = {
-    'Page': 1,
-    'Squire': 2,
-    'Knight': 3,
-    'Ambassador': 4,
-    'Ambassador Plenipotentiary': 5
+    'Candidate': 1,
+    'Assistant Intern': 2,
+    'Intern': 3,
+    'Senior Intern': 4,
+    'Envoy': 5,
+    'Special Envoy': 6,
+    'Senior Envoy': 7,
+    'Dean': 8,
+    'Ambassador': 9,
+    'Ambassador Extraordinary': 10,
+    'Ambassador Plenipotentiary': 11
 };
 
 export const PASSCODES = {
@@ -20,7 +26,7 @@ export const isEligible = (userRank: string, requiredRank: string): boolean => {
 
 export const generateUniqueId = (role: string): string => {
     const random = Math.floor(1000 + Math.random() * 9000); // 4 digit random number
-    
+
     switch (role) {
         case 'super_admin':
             return `OGBC/RA/ADMIN/${random}`;

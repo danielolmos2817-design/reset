@@ -3,7 +3,7 @@ import { Upload, FileSpreadsheet, CheckCircle } from 'lucide-react';
 import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 
-export const PaymentsUpload: React.FC = () => {
+export const PaymentUpload: React.FC = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
